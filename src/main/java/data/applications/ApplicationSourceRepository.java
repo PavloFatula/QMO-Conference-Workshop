@@ -10,7 +10,7 @@ public class ApplicationSourceRepository {
     public static IApplicationSource OpencarttChrome() {
         return new ApplicationSource(
                 "ChromeTemporary",
-                "src\\main\\resources\\chromedriver.exe",
+                "src/main/resources/chromedriver.exe",
                 "http://localhost/",
                 "http://localhost/index.php?route=product/search");
     }
