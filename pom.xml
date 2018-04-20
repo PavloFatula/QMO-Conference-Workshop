@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.softserve.edu</groupId>
+    <artifactId>opencart</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <packaging>jar</packaging>
+
+    <name>opencart</name>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+        <!-- - - - - - Encoding - - - - - -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.resources.plugin.version>3.0.2</maven.resources.plugin.version>
+
+        <!-- - - - - - Java - - - - - -->
+        <jdk.source.version>1.8</jdk.source.version>
+        <jdk.compiler.version>1.8</jdk.compiler.version>
+        <maven.compiler.plugin.version>3.7.0</maven.compiler.plugin.version>
+
+        <!-- - - - - - Test - - - - - -->
+        <org.testng.version>6.11</org.testng.version>
+        <maven.surefire.plugin.version>2.20.1</maven.surefire.plugin.version>
+
+        <!-- - - - - - Automation - - - - - -->
+        <org.seleniumhq.selenium.version>3.11.0</org.seleniumhq.selenium.version>
+        <!-- <org.seleniumhq.selenium.htmlunit-driver>2.26</org.seleniumhq.selenium.htmlunit-driver> -->
+
+        <!-- - - - - - Reports - - - - - -->
+        <testng.reports.directory>target/surefire-reports/test-output</testng.reports.directory>
+        <jenkins.server>absent</jenkins.server>
+        <!-- <allure.version>1.5.0</allure.version> -->
+        <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
+        <allure-testng.version>2.0-BETA21</allure-testng.version>
+        <allure-testng-adaptor.version>1.5.4</allure-testng-adaptor.version>
+        <allure-attachments.version>2.0-BETA21</allure-attachments.version>
+        <aspectj.version>1.8.13</aspectj.version>
+        <!-- - - - - - Mocks - - - - - -->
+        <org.mockito.version>1.10.19</org.mockito.version>
+        <org.powermock.version>1.7.3</org.powermock.version>
+        <!-- - - - - - Logging - - - - - -->
+        <org.slf4j.version>1.7.25</org.slf4j.version>
+        <!-- - - - - - DB - - - - - -->
+        <net.sourceforge.jtds.version>1.3.1</net.sourceforge.jtds.version>
+        <mysql.connector.version>5.1.44</mysql.connector.version>
+        <postgresql.connector.version>9.4-1206-jdbc41</postgresql.connector.version>
+        <database.connection>null</database.connection>
+        <database.login>null</database.login>
+        <database.password>null</database.password>
+        <!-- - - - - - Hibernate - - - - - -->
+        <org.hibernate.version>5.2.2.Final</org.hibernate.version>
+        <org.hibernate.validator>4.3.1.Final</org.hibernate.validator>
+        <!-- - - - - - Utils - - - - - -->
+        <org.apache.poi.version>3.16</org.apache.poi.version>
+        <!-- <xerces.xercesImpl.version>2.11.0</xerces.xercesImpl.version> -->
+        <!-- - - - - - JSON - - - - - -->
+        <jackson.core.version>2.9.2</jackson.core.version>
+        <google.gson.version>2.8.2</google.gson.version>
+    </properties>
+
+    <!-- <repositories> -->
+    <!-- <repository> -->
+    <!-- <id>ms-repo</id> -->
+    <!-- <name>Microsoft</name> -->
+    <!-- <url>http://clojars.org/repo/</url> -->
+    <!-- <url>https://mvnrepository.com/artifact/com.microsoft.azure/azure-storage</url> -->
+    <!-- </repository> -->
+    <!-- </repositories> -->
+
+    <dependencies>
+        <!-- - - - Test - - - -->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>${org.testng.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- - - - Automation Framework - - - -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-server</artifactId>
+            <version>${org.seleniumhq.selenium.version}</version>
+        </dependency>
+        <!-- <dependency> -->
+        <!-- <groupId>org.seleniumhq.selenium</groupId> -->
+        <!-- <artifactId>htmlunit-driver</artifactId> -->
+        <!-- <version>${org.seleniumhq.selenium.htmlunit-driver}</version> -->
+        <!-- </dependency> -->
+        <!-- - - - Reports - - - -->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>${allure-testng.version}</version>
+        </dependency>
+        <!-- <dependency> -->
+        <!-- <groupId>ru.yandex.qatools.allure</groupId> -->
+        <!-- <artifactId>allure-testng-adaptor</artifactId> -->
+        <!-- <version>${allure-testng-adaptor.version}</version> -->
+        <!-- </dependency> -->
+        <!-- <dependency> -->
+        <!-- <groupId>io.qameta.allure</groupId> -->
+        <!-- <artifactId>allure-attachments</artifactId> -->
+        <!-- <version>${allure-attachments.version}</version> -->
+        <!-- </dependency> -->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj.version}</version>
+            <!-- <scope>test</scope> -->
+        </dependency>
+        <!-- <dependency> -->
+        <!-- <groupId>org.hamcrest</groupId> -->
+        <!-- <artifactId>hamcrest-all</artifactId> -->
+        <!-- <version>1.3</version> -->
+        <!-- <scope>test</scope> -->
+        <!-- </dependency> -->
+        <!-- - - - Mock Object - - - -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>${org.mockito.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-api-mockito</artifactId>
+            <version>${org.powermock.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-module-testng</artifactId>
+            <version>${org.powermock.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- - - - Logger - - - -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${org.slf4j.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${org.slf4j.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <!-- - - - DB Access - - - -->
+        <!-- <dependency> -->
+        <!-- <groupId>com.microsoft.sqlserver</groupId> -->
+        <!-- <artifactId>mssql-jdbc</artifactId> -->
+        <!-- <version>6.2.2</version> -->
+        <!-- </dependency> -->
+        <!-- <dependency> -->
+        <!-- <groupId>com.microsoft.sqlserver</groupId> -->
+        <!-- <artifactId>sqljdbc4</artifactId> -->
+        <!-- <version>4.0</version> -->
+        <!-- <version>4.0.2206.100</version> -->
+        <!-- </dependency> -->
+        <dependency>
+            <groupId>net.sourceforge.jtds</groupId>
+            <artifactId>jtds</artifactId>
+            <version>${net.sourceforge.jtds.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.connector.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgresql.connector.version}</version>
+        </dependency>
+        <!-- - - - Hibernate - - - -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${org.hibernate.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${org.hibernate.version}</version>
+        </dependency>
+        <!-- <dependency> -->
+        <!-- <groupId>org.hibernate</groupId> -->
+        <!-- <artifactId>hibernate-validator</artifactId> -->
+        <!-- <version>${org.hibernate.validator}</version> -->
+        <!-- </dependency> -->
+        <!-- - - - Read from Excel formats, etc. - - - -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>${org.apache.poi.version}</version>
+        </dependency>
+        <!-- <dependency> -->
+        <!-- <groupId>xerces</groupId> -->
+        <!-- <artifactId>xercesImpl</artifactId> -->
+        <!-- <version>${xerces.xercesImpl.version}</version> -->
+        <!-- </dependency> -->
+        <!-- - - - - - JSON - - - - - -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>${google.gson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-checkstyle-plugin</artifactId>
+            <version>3.0.0</version>
+            <type>maven-plugin</type>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.0.0</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>${maven.resources.plugin.version}</version>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.plugin.version}</version>
+                <configuration>
+                    <source>${jdk.source.version}</source>
+                    <executable>C:\Program Files\Java\jdk1.8.0_161\bin\javac.exe</executable>
+                    <target>${jdk.compiler.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <!-- - - - Unit Testing - - - -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.surefire.plugin.version}</version>
+                <configuration>
+                    <argLine>-Xms512m -Xmx1024m</argLine>
+                    <!-- <argLine>-Xms256m -Xmx512m</argLine> -->
+                    <systemPropertyVariables>
+                        <surefire.reports.directory>
+                            ${testng.reports.directory}
+                        </surefire.reports.directory>
+                        <surefire.jenkins.server>
+                            ${jenkins.server}
+                        </surefire.jenkins.server>
+                        <selenium-version>
+                            ${org.seleniumhq.selenium.version}
+                        </selenium-version>
+                        <database-connection>
+                            ${database.connection}
+                        </database-connection>
+                        <database-login>
+                            ${database.login}
+                        </database-login>
+                        <database-password>
+                            ${database.password}
+                        </database-password>
+                    </systemPropertyVariables>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>regression.xml</suiteXmlFile>
+                    </suiteXmlFiles>
+                    <reportsDirectory>${testng.reports.directory}</reportsDirectory>
+                    <argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                    </argLine>
+
+                    <!-- <properties> -->
+                    <!-- <property> -->
+                    <!-- <name>usedefaultlisteners</name> -->
+                    <!-- <value>false</value> -->
+                    <!-- </property> -->
+                    <!-- <property> -->
+                    <!-- <name>listener</name> -->
+                    <!-- <value>ru.yandex.qatools.allure.testng.AllureTestListener</value> -->
+                    <!-- </property> -->
+                    <!-- </properties> -->
+
+                    <systemProperties>
+                        <property>
+                            <name>allure.results.directory</name>
+                            <value>${allure.results.directory}</value>
+                        </property>
+                        <!-- <property> -->
+                        <!-- <name>allure.link.issue.pattern</name> -->
+                        <!-- <value>${issues.tracker}</value> -->
+                        <!-- </property> -->
+                        <!-- <property> -->
+                        <!-- <name>allure.link.tms.pattern</name> -->
+                        <!-- <value>${tms}</value> -->
+                        <!-- </property> -->
+                    </systemProperties>
+                </configuration>
+            </plugin>
+
+            <!-- 			<plugin> -->
+            <!-- 				<groupId>org.codehaus.mojo</groupId> -->
+            <!-- 				<artifactId>exec-maven-plugin</artifactId> -->
+            <!-- 				<version>1.6.0</version> -->
+            <!-- 				<executions> -->
+            <!-- 					<execution> -->
+            <!-- 						<id>post-test</id> -->
+            <!-- 						<goals> -->
+            <!-- 							<goal>exec</goal> -->
+            <!-- 						</goals> -->
+            <!-- 						<phase>site</phase> -->
+            <!-- <phase>test</phase> -->
+            <!-- 						<configuration> -->
+            <!-- 							<executable>allureServer.bat</executable> -->
+            <!-- <arguments> -->
+            <!-- <argument>exec-maven-plugin</argument> -->
+            <!-- <argument>1.6.0</argument> -->
+            <!-- </arguments> -->
+            <!-- 						</configuration> -->
+            <!-- 					</execution> -->
+            <!-- 				</executions> -->
+            <!-- 			</plugin> -->
+
+            <!-- - - - Echo - - - -->
+            <plugin>
+                <groupId>com.github.ekryd.echo-maven-plugin</groupId>
+                <artifactId>echo-maven-plugin</artifactId>
+                <version>1.2.0</version>
+                <executions>
+                    <execution>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>echo</goal>
+                        </goals>
+                        <configuration>
+                            <message>+++++Local Repository: ${settings.localRepository}</message>
+                            <!-- 							<message>+++++TestNG Version: ${org.testng.version}</message> -->
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.google.code.echo-maven-plugin</groupId>
+                <artifactId>echo-maven-plugin</artifactId>
+                <version>1.0.0</version>
+                <inherited>false</inherited>
+                <configuration>
+                    <!-- 					<message>*****ArtifactId: ${project.artifactId}</message> -->
+                    <!-- 					<message>*****Local Repository: ${settings.localRepository}</message> -->
+                    <message>*****Project.build.directory: ${project.build.directory}</message>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>echo</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <reporting>
+        <excludeDefaults>true</excludeDefaults>
+        <plugins>
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.9</version>
+            </plugin>
+        </plugins>
+    </reporting>
+
+</project>
