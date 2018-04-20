@@ -63,15 +63,6 @@
         <google.gson.version>2.8.2</google.gson.version>
     </properties>
 
-    <!-- <repositories> -->
-    <!-- <repository> -->
-    <!-- <id>ms-repo</id> -->
-    <!-- <name>Microsoft</name> -->
-    <!-- <url>http://clojars.org/repo/</url> -->
-    <!-- <url>https://mvnrepository.com/artifact/com.microsoft.azure/azure-storage</url> -->
-    <!-- </repository> -->
-    <!-- </repositories> -->
-
     <dependencies>
         <!-- - - - Test - - - -->
         <dependency>
@@ -86,11 +77,6 @@
             <artifactId>selenium-server</artifactId>
             <version>${org.seleniumhq.selenium.version}</version>
         </dependency>
-        <!-- <dependency> -->
-        <!-- <groupId>org.seleniumhq.selenium</groupId> -->
-        <!-- <artifactId>htmlunit-driver</artifactId> -->
-        <!-- <version>${org.seleniumhq.selenium.htmlunit-driver}</version> -->
-        <!-- </dependency> -->
         <!-- - - - Reports - - - -->
         <dependency>
             <groupId>io.qameta.allure</groupId>
@@ -102,7 +88,6 @@
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
             <version>${aspectj.version}</version>
-            <!-- <scope>test</scope> -->
         </dependency>
 
         <!-- - - - Mock Object - - - -->
@@ -136,18 +121,6 @@
             <version>${org.slf4j.version}</version>
             <scope>runtime</scope>
         </dependency>
-        <!-- - - - DB Access - - - -->
-        <!-- <dependency> -->
-        <!-- <groupId>com.microsoft.sqlserver</groupId> -->
-        <!-- <artifactId>mssql-jdbc</artifactId> -->
-        <!-- <version>6.2.2</version> -->
-        <!-- </dependency> -->
-        <!-- <dependency> -->
-        <!-- <groupId>com.microsoft.sqlserver</groupId> -->
-        <!-- <artifactId>sqljdbc4</artifactId> -->
-        <!-- <version>4.0</version> -->
-        <!-- <version>4.0.2206.100</version> -->
-        <!-- </dependency> -->
         <dependency>
             <groupId>net.sourceforge.jtds</groupId>
             <artifactId>jtds</artifactId>
@@ -174,22 +147,12 @@
             <artifactId>hibernate-entitymanager</artifactId>
             <version>${org.hibernate.version}</version>
         </dependency>
-        <!-- <dependency> -->
-        <!-- <groupId>org.hibernate</groupId> -->
-        <!-- <artifactId>hibernate-validator</artifactId> -->
-        <!-- <version>${org.hibernate.validator}</version> -->
-        <!-- </dependency> -->
         <!-- - - - Read from Excel formats, etc. - - - -->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
             <version>${org.apache.poi.version}</version>
         </dependency>
-        <!-- <dependency> -->
-        <!-- <groupId>xerces</groupId> -->
-        <!-- <artifactId>xercesImpl</artifactId> -->
-        <!-- <version>${xerces.xercesImpl.version}</version> -->
-        <!-- </dependency> -->
         <!-- - - - - - JSON - - - - - -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
