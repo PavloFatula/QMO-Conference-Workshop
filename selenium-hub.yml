@@ -1,0 +1,36 @@
+# To execute this docker-compose yml file use docker-compose -f <file_name> up
+# Add the "-d" flag at the end for deattached execution
+version: "3"
+services:
+  selenium:
+    image: selenium/hub:3.11.0-californium
+    container_name: selenium
+    ports:
+      - "4444:4444"
+    environment:
+      - GRID_TIMEOUT=0
+      - GRID_DEBUG=true
+  chrome:
+    image: selenium/node-chrome:3.11.0-californium
+    depends_on:
+      - selenium
+    environment:
+      - HUB_HOST=selenium
+      - HUB_PORT=4444
+      - NODE_MAX_INSTANCES=7
+      - NODE_MAX_SESSION=7
+      - SCREEN_WIDTH=1900
+      - SCREEN_HEIGHT=1600
+      - SCREEN_DEPTH=24
+  firefox:
+    image: selenium/node-firefox:3.11.0-californium
+    depends_on:
+      - selenium
+    environment:
+      - HUB_HOST=selenium
+      - HUB_PORT=4444
+      - NODE_MAX_INSTANCES=5
+      - NODE_MAX_SESSION=5
+      - SCREEN_WIDTH=1900
+      - SCREEN_HEIGHT=1600
+      - SCREEN_DEPTH=24

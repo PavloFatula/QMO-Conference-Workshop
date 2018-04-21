@@ -1,7 +1,19 @@
-# QMO-Conference-Workshop
-this repository contain dummy test automation project with some tests
+QMO-Conference-Workshop
+===
+This repository contain dummy test automation project with some tests. Workshop notes are [here](https://gist.github.com/extsoft/d8bd1b3c138bfe7b8136237e58857454). 
 
-to run tests use follow command:
-`mvn clean test`
+Run app
+===
+`docker-compose -f selenium-hub.yml -f opencart.yml up -d` will up application together with the Selenium Grid (Chrome and Firefox nodes).
 
-Tests run: 11, Failures: 2, Errors: 0, Skipped: 0
+Run tests
+===
+Maven
+-----
+```bash
+$ mvn clean test
+```
+
+Statistic
+---
+Tests run: 10, Failures: 8, Errors: 0, Skipped: 0

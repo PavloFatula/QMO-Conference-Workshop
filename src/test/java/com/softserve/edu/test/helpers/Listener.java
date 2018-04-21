@@ -1,15 +1,14 @@
 package com.softserve.edu.test.helpers;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import pages.Application;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-import pages.modules.FeaturedBlock;
+import pages.Application;
 
 import java.io.File;
 import java.nio.file.Paths;
@@ -37,7 +36,7 @@ public class Listener implements ITestListener {
                 .toAbsolutePath()
                 .normalize()
                 .toString();
-        String name = projectPath + "\\screenshots\\"
+        String name = projectPath + "/screenshots/"
                 + iTestResult.getName() + "_"
                 + formatter.format(now.getTime()) + ".jpg";
         captureScreenshot(name);

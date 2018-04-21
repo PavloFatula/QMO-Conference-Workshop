@@ -23,4 +23,19 @@ public class ApplicationSourceRepository {
                 "http://opencartt.rf.gd/index.php?route=product/search");
     }
 
+    public static IApplicationSource remoteFirefox() {
+        return new ApplicationSource(
+                "rf",
+                null,
+                "http://opencart",
+                "http://opencart/index.php?route=product/search");
+    }
+
+    public static IApplicationSource remoteChrome() {
+        return new ApplicationSource(
+                "rch",
+                null,
+                "http://opencart",
+                "http://opencart/index.php?route=product/search");
+    }
 }

@@ -1,16 +1,16 @@
 package com.softserve.edu.test;
 
+import com.softserve.edu.test.helpers.Listener;
 import data.applications.ApplicationSourceRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.internal.thread.ThreadTimeoutException;
-import pages.Application;
-import com.softserve.edu.test.helpers.Listener;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
+import org.testng.internal.thread.ThreadTimeoutException;
+import pages.Application;
 
 @Listeners(Listener.class)
 
@@ -19,7 +19,7 @@ public class BaseTest {
 
     @BeforeClass
     public void setupClass() {
-        Application.get(ApplicationSourceRepository.OpencarttChrome());
+        Application.get(ApplicationSourceRepository.remoteFirefox());
         logger.info("setup class");
     }
 

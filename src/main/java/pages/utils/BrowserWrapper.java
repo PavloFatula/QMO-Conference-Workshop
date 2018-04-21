@@ -7,8 +7,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class BrowserWrapper {
 
@@ -62,7 +66,9 @@ public class BrowserWrapper {
         FIREFOX5X_TEMPORARY("FireFox5xTemporary", new FirefoxTemporary()),
         CHROME_TEMPORARY("ChromeTemporary", new ChromeTemporary()),
         CHROME_PROFILE("ChromeProfile", new ChromeProfile()),
-        CHROME_WITHOUT_UI("ChromeWithoutUI", new ChromeWithoutUI());
+        CHROME_WITHOUT_UI("ChromeWithoutUI", new ChromeWithoutUI()),
+        RC("rch", new RChrome()),
+        RF("rf", new RFirefox());
         //
         private String browserName;
         private IBrowser browser;
@@ -79,6 +85,28 @@ public class BrowserWrapper {
         @Override
         public String toString() {
             return browserName;
+        }
+    }
+
+    private static class RChrome implements IBrowser {
+        public WebDriver getBrowser(IApplicationSource applicationSource) {
+            try {
+                return new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), new ChromeOptions());
+            } catch (MalformedURLException e) {
+                throw new RuntimeException(e);
+            }
+
+        }
+    }
+
+    private static class RFirefox implements IBrowser {
+        public WebDriver getBrowser(IApplicationSource applicationSource) {
+            try {
+                return new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), new FirefoxOptions());
+            } catch (MalformedURLException e) {
+                throw new RuntimeException(e);
+            }
+
         }
     }
 
