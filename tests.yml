@@ -1,15 +1,14 @@
-# To execute this docker-compose yml file use docker-compose -f <file_name> up
-# Add the "-d" flag at the end for deattached execution
-version: "3"
+version: '3'
 services:
   selenium:
-    image: selenium/hub:3.11.0-californium
-    container_name: selenium
-    ports:
-      - "4444:4444"
-    environment:
-      - GRID_TIMEOUT=0
-      - GRID_DEBUG=true
+      image: selenium/hub:3.11.0-californium
+      ports:
+        - "4444:4444"
+      environment:
+        - GRID_TIMEOUT=0
+        - GRID_DEBUG=true
+      depends_on:
+        - opencart
   chrome:
     image: selenium/node-chrome:3.11.0-californium
     depends_on:
@@ -34,3 +33,11 @@ services:
       - SCREEN_WIDTH=1900
       - SCREEN_HEIGHT=1600
       - SCREEN_DEPTH=24
+  opencart-tests:
+    build: .
+    image: opencart-tests
+    depends_on:
+      - firefox
+      - chrome
+    volumes:
+      - ./reports:/tests/target/allure-results

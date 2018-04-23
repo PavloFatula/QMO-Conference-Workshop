@@ -19,7 +19,7 @@ public class BaseTest {
 
     @BeforeClass
     public void setupClass() {
-        Application.get(ApplicationSourceRepository.remoteFirefox());
+        Application.get(ApplicationSourceRepository.cliOption());
         logger.info("setup class");
     }
 

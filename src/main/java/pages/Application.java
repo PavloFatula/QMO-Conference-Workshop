@@ -58,13 +58,13 @@ public class Application {
 
     //Pages Loading ----------------------------------------------------------------------------------------
     public HomePage loadHomePage() {
-        getBrowser().getDriver().get(applicationSource.getBaseUrl());
+        getBrowser().getDriver().get(applicationSource.getBaseUrl().toString());
         return new HomePage();
     }
 
     @Step
     public SearchPage loadSearchPage() {
-        getBrowser().getDriver().get(applicationSource.getSearchPageUrl());
+        getBrowser().getDriver().get(applicationSource.getSearchPageUrl().toString());
         return new SearchPage();
     }
 }

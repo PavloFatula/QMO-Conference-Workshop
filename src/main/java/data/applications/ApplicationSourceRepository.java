@@ -11,31 +11,23 @@ public class ApplicationSourceRepository {
         return new ApplicationSource(
                 "ChromeTemporary",
                 "src/main/resources/chromedriver.exe",
-                "http://localhost/",
-                "http://localhost/index.php?route=product/search");
+                new ApplicationUrl(""),
+                new ApplicationUrl("index.php?route=product/search"));
     }
 
     public static IApplicationSource OpencarttFirefox() {
         return new ApplicationSource(
                 "FirefoxTemporary",
                 "C:/Program Files/Mozilla Firefox/browser/geckodriver.exe",
-                "http://opencartt.rf.gd",
-                "http://opencartt.rf.gd/index.php?route=product/search");
+                new ApplicationUrl(""),
+                new ApplicationUrl("index.php?route=product/search"));
     }
 
-    public static IApplicationSource remoteFirefox() {
+    public static IApplicationSource cliOption() {
         return new ApplicationSource(
-                "rf",
+                System.getProperty("browser"),
                 null,
-                "http://opencart",
-                "http://opencart/index.php?route=product/search");
-    }
-
-    public static IApplicationSource remoteChrome() {
-        return new ApplicationSource(
-                "rch",
-                null,
-                "http://opencart",
-                "http://opencart/index.php?route=product/search");
+                new ApplicationUrl(""),
+                new ApplicationUrl("index.php?route=product/search"));
     }
 }

@@ -1,5 +1,6 @@
 package pages.utils;
 
+import data.IUrl;
 import data.applications.IApplicationSource;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -60,6 +61,17 @@ public class BrowserWrapper {
         }
     }
 
+    private void initWebDriver(IApplicationSource applicationSource) {
+        Browsers currentBrowser = Browsers.DEFAULT_TEMPORARY;
+        for (Browsers browser : Browsers.values()) {
+            if (browser.toString().equalsIgnoreCase(applicationSource.getBrowserName())) {
+                currentBrowser = browser;
+                break;
+            }
+        }
+        driver = currentBrowser.runBrowser(applicationSource);
+    }
+
     // ENUM----------------------------------------------------------------------------
     public static enum Browsers {
         DEFAULT_TEMPORARY("ChromeTemporary", new ChromeTemporary()),
@@ -67,8 +79,10 @@ public class BrowserWrapper {
         CHROME_TEMPORARY("ChromeTemporary", new ChromeTemporary()),
         CHROME_PROFILE("ChromeProfile", new ChromeProfile()),
         CHROME_WITHOUT_UI("ChromeWithoutUI", new ChromeWithoutUI()),
-        RC("rch", new RChrome()),
-        RF("rf", new RFirefox());
+        CHROME("chrome", new Chrome()),
+        FIREFOX("firefox", new Firefox()),
+        RC("remote-chrome", new RChrome(new HubUrl())),
+        RF("remote-firefox", new RFirefox(new HubUrl()));
         //
         private String browserName;
         private IBrowser browser;
@@ -89,24 +103,39 @@ public class BrowserWrapper {
     }
 
     private static class RChrome implements IBrowser {
+        private final IUrl hub;
+
+        RChrome(IUrl hub) {
+            this.hub = hub;
+        }
+
         public WebDriver getBrowser(IApplicationSource applicationSource) {
             try {
-                return new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), new ChromeOptions());
+                return new RemoteWebDriver(new URL(hub.toString()), new ChromeOptions());
             } catch (MalformedURLException e) {
                 throw new RuntimeException(e);
             }
-
         }
     }
 
     private static class RFirefox implements IBrowser {
+        private final IUrl hub;
+
+        RFirefox(IUrl hub) {
+            this.hub = hub;
+        }
         public WebDriver getBrowser(IApplicationSource applicationSource) {
             try {
-                return new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), new FirefoxOptions());
+                return new RemoteWebDriver(new URL(hub.toString()), new FirefoxOptions());
             } catch (MalformedURLException e) {
                 throw new RuntimeException(e);
             }
+        }
+    }
 
+    private static class Chrome implements IBrowser {
+        public WebDriver getBrowser(IApplicationSource applicationSource) {
+            return new ChromeDriver();
         }
     }
 
@@ -118,16 +147,10 @@ public class BrowserWrapper {
         initWebDriver(applicationSource);
     }
 
-    private void initWebDriver(IApplicationSource applicationSource) {
-        Browsers currentBrowser = Browsers.DEFAULT_TEMPORARY;
-        for (Browsers browser: Browsers.values()) {
-            if (browser.toString().toLowerCase()  //.equalsIgnoreCase(anotherString)
-                    .contains(applicationSource.getBrowserName().toLowerCase())) {
-                currentBrowser = browser;
-                break;
-            }
+    private static class Firefox implements IBrowser {
+        public WebDriver getBrowser(IApplicationSource applicationSource) {
+            return new FirefoxDriver();
         }
-        driver = currentBrowser.runBrowser(applicationSource);
     }
 
     public WebDriver getDriver() {

@@ -1,13 +1,14 @@
 package data.applications;
 
+import data.IUrl;
+
 public class ApplicationSource implements IApplicationSource {
     private String browserName;
     private String driverPath;
-    private String baseUrl;
-    private String searchPageUrl;
+    private IUrl baseUrl;
+    private IUrl searchPageUrl;
 
-    // TODO Develop Builder
-    public ApplicationSource(String browserName, String driverPath, String baseUrl, String searchPageUrl) {
+    public ApplicationSource(String browserName, String driverPath, IUrl baseUrl, IUrl searchPageUrl) {
         this.browserName = browserName;
         this.driverPath = driverPath;
         this.baseUrl = baseUrl;
@@ -22,27 +23,11 @@ public class ApplicationSource implements IApplicationSource {
         return driverPath;
     }
 
-    public String getBaseUrl() {
+    public IUrl getBaseUrl() {
         return baseUrl;
     }
 
-    public String getSearchPageUrl() {
+    public IUrl getSearchPageUrl() {
         return searchPageUrl;
-    }
-
-    public void setBrowserName(String browserName) {
-        this.browserName = browserName;
-    }
-
-    public void setDriverPath(String driverPath) {
-        this.driverPath = driverPath;
-    }
-
-    public void setBaseUrl(String baseUrl) {
-        this.baseUrl = baseUrl;
-    }
-
-    public void setSearchPageUrl(String searchPageUrl) {
-        this.searchPageUrl = searchPageUrl;
     }
 }

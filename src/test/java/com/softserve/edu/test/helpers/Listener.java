@@ -36,7 +36,7 @@ public class Listener implements ITestListener {
                 .toAbsolutePath()
                 .normalize()
                 .toString();
-        String name = projectPath + "/screenshots/"
+        String name = projectPath + "/target/allure-results/screenshots/"
                 + iTestResult.getName() + "_"
                 + formatter.format(now.getTime()) + ".jpg";
         captureScreenshot(name);

@@ -7,11 +7,11 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
-import pages.Application;
-import pages.SearchPage;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import pages.Application;
+import pages.SearchPage;
 
 public class TestSearchPage extends BaseTest {
 
@@ -27,7 +27,7 @@ public class TestSearchPage extends BaseTest {
         String expectedUrl = Application
                 .get()
                 .getApplicationSource()
-                .getSearchPageUrl();
+                .getSearchPageUrl().toString();
         Assert.assertEquals(searchPage.getCurrentUrl(), expectedUrl);
 
         logger.info("moveToSearchPageFromHomeTest - url - " + searchPage.getCurrentUrl());
@@ -44,7 +44,7 @@ public class TestSearchPage extends BaseTest {
         String expectedUrl = Application
                 .get()
                 .getApplicationSource()
-                .getSearchPageUrl();
+                .getSearchPageUrl().toString();
         Assert.assertEquals(searchPage.getCurrentUrl(), expectedUrl);
     }
 
