@@ -12,7 +12,7 @@ docker-compose -p sut -f opencart.yml up -d
 # run tests
 mvn clean test -Dsut-domain="localhost" -Dbrowser=chrome
 # destroy SUT
-docker-compose -p sut -f opencart.yml up -d
+docker-compose -p sut -f opencart.yml down
 ```
 
 Available `browser`s:
@@ -25,10 +25,12 @@ Docker run
 ---
 For Docker execution we have to build an image with tests, configure tests together with Selenium Hub (see [tests.yaml](tests.yml) for the details) and run Tests and Hub together with the SUT. The commands below demonstrates process:
 ```bash
-# run SUT and tests (press Ctrl+C to break the command)
-docker-compose -p all -f tests.yml -f opencart.yml up --build 
-# destroy
-docker-compose -p all -f tests.yml -f opencart.yml down
+# build fresh image 
+docker-compose -p demo -f opencart.yml -f tests.yml build --no-cache
+# run SUT and tests
+docker-compose -p demo -f opencart.yml -f tests.yml up opencart-tests
+# clean up
+docker-compose -p demo -f opencart.yml -f tests.yml down
 ``` 
 
 Please take into account that defaults are set in the [Dockerfile](Dockerfile). Add `command: "your defaults"` to `opencart-test` service in  [tests.yaml](tests.yml) if you would like to change it.
